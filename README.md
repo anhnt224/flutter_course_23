@@ -1,16 +1,17 @@
-# flutter_course_23
+Khoá học Flutter 12/2023 dành cho sinh viên ĐTVT Bách khoa
+🎯 Mục tiêu: Xây dựng được ứng dụng đơn giản
+📖 Nội dung:
 
-A new Flutter project.
+- Dart cơ bản.......
+- Các Widget cơ bản.
+- Animation cơ bản.
+- State management: Provider, Bloc.
+- Firebase.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+Địa chỉ: C7-816
+Người thực hiện: AnhNT - Nhâm Trọng Ánh
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- github: https://github.com/anhnt224
+- gmail: anhnt019@gmail.com

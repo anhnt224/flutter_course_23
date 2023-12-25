@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_course_23/modules/buoi_3/row_colum.dart' as a;
 import 'package:flutter_course_23/modules/buoi_3/stack_demo.dart';
 import 'package:flutter_course_23/modules/buoi_3/wrap.dart';
+import 'package:flutter_course_23/modules/lesson_4/button_demo.dart';
+import 'package:flutter_course_23/modules/lesson_4/rich_text_demo.dart';
+import 'package:flutter_course_23/modules/lesson_4/text_demo.dart';
+
+import 'modules/lesson_4/image_demo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,10 +39,18 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Center(
-        child: Column(
-          children: [a.BoxA(), StackDemo()],
+      home: Scaffold(
+        body: SafeArea(
+          child: Container(
+            color: Colors.red,
+          ),
         ),
+        appBar: AppBar(
+          title: Image.asset('assets/icons/house2.png'),
+        ),
+        floatingActionButton: FloatingActionButton(onPressed: () {
+          print('A');
+        }),
       ),
     );
   }

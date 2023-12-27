@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_course_23/modules/buoi_3/row_colum.dart' as a;
-import 'package:flutter_course_23/modules/buoi_3/stack_demo.dart';
-import 'package:flutter_course_23/modules/buoi_3/wrap.dart';
-import 'package:flutter_course_23/modules/lession_5/demo_1.dart';
-import 'package:flutter_course_23/modules/lesson_4/button_demo.dart';
-import 'package:flutter_course_23/modules/lesson_4/product_info_screen.dart';
-import 'package:flutter_course_23/modules/lesson_4/rich_text_demo.dart';
-import 'package:flutter_course_23/modules/lesson_4/text_demo.dart';
 
 import 'modules/lession_5/navigator.dart';
+import 'modules/lession_5/navigator_named.dart';
 import 'modules/lesson_4/image_demo.dart';
 
 void main() {
@@ -42,7 +35,14 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Page1(),
+      routes: {
+        '/page1': (context) => const Page1(),
+        '/page2': (context) => const Page2(),
+        '/page3': (context) => const Page3(),
+        '/': (context) => const Page4(),
+        '/page5': (context) => const Page5(),
+        '/page6': (context) => const Page6(),
+      },
     );
   }
 }

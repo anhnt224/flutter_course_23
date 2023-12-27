@@ -35,13 +35,32 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      routes: {
-        '/page1': (context) => const Page1(),
-        '/page2': (context) => const Page2(),
-        '/page3': (context) => const Page3(),
-        '/': (context) => const Page4(),
-        '/page5': (context) => const Page5(),
-        '/page6': (context) => const Page6(),
+      // routes: {
+      //   '/page1': (context) => const Page1(),
+      //   '/page2': (context) => const Page2(),
+      //   '/page3': (context) => const Page3(),
+      //   '/': (context) => const Page4(),
+      //   '/page5': (context) => const Page5(),
+      //   '/page6': (context) => const Page6(),
+      // },
+      initialRoute: '/',
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case '/':
+            return MaterialPageRoute(
+              builder: (context) => const Page4(),
+            );
+          case '/page5':
+            return MaterialPageRoute(
+              builder: (context) => Page5(
+                argument: settings.arguments.toString(),
+              ),
+            );
+          case '/page6':
+            return MaterialPageRoute(builder: (context) => const Page6());
+          default:
+        }
+        return null;
       },
     );
   }

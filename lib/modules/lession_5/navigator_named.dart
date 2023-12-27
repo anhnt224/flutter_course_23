@@ -12,7 +12,10 @@ class Page4 extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.pushNamed(context, '/page5');
+            Navigator.pushNamed(context, '/page5', arguments: {"1": 2, "2": 3})
+                .then((value) {
+              print(value);
+            });
           },
           child: const Text('Push to Page 5'),
         ),
@@ -22,7 +25,9 @@ class Page4 extends StatelessWidget {
 }
 
 class Page5 extends StatelessWidget {
-  const Page5({super.key});
+  const Page5({super.key, required this.argument});
+
+  final String argument;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +38,10 @@ class Page5 extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
+            Text(
+              argument,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/page6');
@@ -41,7 +50,7 @@ class Page5 extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pop(context, true);
               },
               child: const Text('Pop back!'),
             ),

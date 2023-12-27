@@ -8,6 +8,7 @@ import 'package:flutter_course_23/modules/lesson_4/product_info_screen.dart';
 import 'package:flutter_course_23/modules/lesson_4/rich_text_demo.dart';
 import 'package:flutter_course_23/modules/lesson_4/text_demo.dart';
 
+import 'modules/lession_5/navigator.dart';
 import 'modules/lesson_4/image_demo.dart';
 
 void main() {
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Demo(),
+      home: const Page1(),
     );
   }
 }

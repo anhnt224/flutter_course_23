@@ -71,11 +71,22 @@ class Page6 extends StatelessWidget {
         title: const Text("Page6"),
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('Pop back!'),
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Pop back!'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.popUntil(
+                    context, (route) => route.settings.name == '/');
+              },
+              child: const Text('Pop util!'),
+            ),
+          ],
         ),
       ),
     );

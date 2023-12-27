@@ -48,10 +48,12 @@ class MyApp extends StatelessWidget {
         switch (settings.name) {
           case '/':
             return MaterialPageRoute(
+              settings: settings,
               builder: (context) => const Page4(),
             );
           case '/page5':
             return MaterialPageRoute(
+              settings: settings,
               builder: (context) => Page5(
                 argument: settings.arguments.toString(),
               ),

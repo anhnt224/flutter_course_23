@@ -46,6 +46,7 @@ class ListViewDemo extends StatelessWidget {
             return StudentItem(studentName: studentName);
           },
           itemCount: studentNames.length,
+          physics: const NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.all(16),
         ),
       ),

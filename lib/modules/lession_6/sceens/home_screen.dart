@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_course_23/modules/lession_6/models/coffee.dart';
+import 'package:collection/collection.dart'; //
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,11 +14,26 @@ class _HomeScreenState extends State<HomeScreen>
   late TabController _tabController;
   int _selectedTab = 0;
 
+  List<Coffee> coffeeList = [
+    Coffee('Cappuccino', 'assets/images/cap.png', 4.4, 4.8, 'Cappuccino'),
+    Coffee('Cappuccino', 'assets/images/cap.png', 4.4, 4.8, 'Cappuccino'),
+    Coffee('Cappuccino', 'assets/images/cap.png', 4.4, 4.8, 'Machiato'),
+    Coffee('Cappuccino', 'assets/images/cap.png', 4.4, 4.8, 'Machiato'),
+    Coffee('Cappuccino', 'assets/images/cap.png', 4.4, 4.8, 'Latte'),
+    Coffee('Cappuccino', 'assets/images/cap.png', 4.4, 4.8, 'Americano'),
+    Coffee('Cappuccino', 'assets/images/cap.png', 4.4, 4.8, 'Other'),
+  ];
+  late List<String?> _coffeeTypes;
+  Map<String?, List<Coffee>> _coffeeGroups = {};
+
   @override
   void initState() {
     super.initState();
 
-    _tabController = TabController(length: 4, vsync: this);
+    _coffeeGroups = coffeeList.groupListsBy((e) => e.type);
+    _coffeeTypes = _coffeeGroups.keys.toList();
+
+    _tabController = TabController(length: _coffeeTypes.length, vsync: this);
     _tabController.addListener(() {
       setState(() {
         _selectedTab = _tabController.index;
@@ -65,10 +82,11 @@ class _HomeScreenState extends State<HomeScreen>
                     isScrollable: true,
                     controller: _tabController,
                     tabs: [
-                      TabItem(title: 'Cappuccino', active: _selectedTab == 0),
-                      TabItem(title: 'Cappuccino', active: _selectedTab == 1),
-                      TabItem(title: 'Cappuccino', active: _selectedTab == 2),
-                      TabItem(title: 'Cappuccino', active: _selectedTab == 3)
+                      ..._coffeeTypes
+                          .mapIndexed((index, element) => TabItem(
+                              title: element ?? '',
+                              active: index == _selectedTab))
+                          .toList()
                     ],
                   ),
                   SizedBox(
@@ -76,13 +94,14 @@ class _HomeScreenState extends State<HomeScreen>
                     height: 400,
                     child: TabBarView(
                       controller: _tabController,
-                      children: [
-                        Container(
-                            color: Colors.white, child: const Text('View 1')),
-                        const Text('View2'),
-                        const Text('View2'),
-                        const Text('View2'),
-                      ],
+                      children: _coffeeTypes.map((e) {
+                        final coffeeList = _coffeeGroups[e];
+                        return Container(
+                          height: 300,
+                          color: Colors.red[50],
+                          child: Text(coffeeList.toString()),
+                        );
+                      }).toList(),
                     ),
                   )
                 ],

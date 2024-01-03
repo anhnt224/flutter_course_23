@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_course_23/modules/lession_5/grid_view_demo.dart';
 import 'package:flutter_course_23/modules/lession_5/list_view_demo.dart';
+import 'package:flutter_course_23/modules/lession_6/sceens/home_screen.dart';
 import 'package:flutter_course_23/modules/lession_6/sceens/started_screen.dart';
 
 import 'modules/lession_5/navigator.dart';
@@ -38,14 +39,6 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      // routes: {
-      //   '/page1': (context) => const Page1(),
-      //   '/page2': (context) => const Page2(),
-      //   '/page3': (context) => const Page3(),
-      //   '/': (context) => const Page4(),
-      //   '/page5': (context) => const Page5(),
-      //   '/page6': (context) => const Page6(),
-      // },
       initialRoute: '/',
       onGenerateRoute: (settings) {
         switch (settings.name) {
@@ -54,6 +47,12 @@ class MyApp extends StatelessWidget {
               settings: settings,
               builder: (context) => const StartedScreen(),
             );
+          case '/home':
+            return MaterialPageRoute(
+              builder: (context) => const HomeScreen(),
+              settings: settings,
+            );
+
           default:
         }
         return null;

@@ -16,14 +16,14 @@ class StartedScreen extends StatelessWidget {
         child: Stack(
           children: [
             Image.asset('assets/images/image_started.png'),
-            _buildBottomView()
+            _buildBottomView(context)
           ],
         ),
       ),
     );
   }
 
-  Widget _buildBottomView() {
+  Widget _buildBottomView(BuildContext context) {
     return Positioned(
       left: 0,
       right: 0,
@@ -35,8 +35,8 @@ class StartedScreen extends StatelessWidget {
                 colors: [Colors.black12, Colors.black],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter)),
-        child: const Column(children: [
-          Text(
+        child: Column(children: [
+          const Text(
             'Coffee so good, your taste buds will love it.',
             style: TextStyle(
               fontSize: 36,
@@ -45,14 +45,19 @@ class StartedScreen extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: 8),
-          Text(
+          const SizedBox(height: 8),
+          const Text(
             'The best grain, the finest roast, the powerful flavor.',
             style: TextStyle(color: Color(0xFFA9A9A9), fontSize: 14),
             textAlign: TextAlign.center,
           ),
-          SizedBox(height: 8),
-          MainButton(title: 'Get started')
+          const SizedBox(height: 8),
+          MainButton(
+            title: 'Get started',
+            onTap: () {
+              Navigator.pushNamed(context, '/home');
+            },
+          )
         ]),
       ),
     );

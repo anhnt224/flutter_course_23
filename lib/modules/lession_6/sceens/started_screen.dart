@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_course_23/modules/lession_6/widgets/main_button.dart';
 
@@ -7,14 +9,13 @@ class StartedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox(
+      body: Container(
+        color: Colors.black,
         width: double.maxFinite,
         height: double.maxFinite,
         child: Stack(
           children: [
-            Container(
-              child: Image.asset('assets/images/image_started.png'),
-            ),
+            Image.asset('assets/images/image_started.png'),
             _buildBottomView()
           ],
         ),
@@ -29,7 +30,11 @@ class StartedScreen extends StatelessWidget {
       bottom: 0,
       child: Container(
         padding: const EdgeInsets.all(44),
-        color: Colors.black,
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+                colors: [Colors.black12, Colors.black],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter)),
         child: const Column(children: [
           Text(
             'Coffee so good, your taste buds will love it.',

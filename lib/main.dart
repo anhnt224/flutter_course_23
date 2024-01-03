@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_course_23/modules/lession_5/grid_view_demo.dart';
 import 'package:flutter_course_23/modules/lession_5/list_view_demo.dart';
+import 'package:flutter_course_23/modules/lession_6/sceens/started_screen.dart';
 
 import 'modules/lession_5/navigator.dart';
 import 'modules/lession_5/navigator_named.dart';
@@ -51,17 +52,8 @@ class MyApp extends StatelessWidget {
           case '/':
             return MaterialPageRoute(
               settings: settings,
-              builder: (context) => GridViewDemo(),
+              builder: (context) => const StartedScreen(),
             );
-          case '/page5':
-            return MaterialPageRoute(
-              settings: settings,
-              builder: (context) => Page5(
-                argument: settings.arguments.toString(),
-              ),
-            );
-          case '/page6':
-            return MaterialPageRoute(builder: (context) => const Page6());
           default:
         }
         return null;

@@ -3,7 +3,9 @@ import 'package:flutter_course_23/modules/lession_5/grid_view_demo.dart';
 import 'package:flutter_course_23/modules/lession_5/list_view_demo.dart';
 import 'package:flutter_course_23/modules/lession_6/sceens/home_screen.dart';
 import 'package:flutter_course_23/modules/lession_6/sceens/started_screen.dart';
+import 'package:flutter_course_23/modules/lession_7/provider_demo.dart';
 import 'package:flutter_course_23/modules/lession_7/tile_state_less.dart';
+import 'package:provider/provider.dart';
 
 import 'modules/lession_5/navigator.dart';
 import 'modules/lession_5/navigator_named.dart';
@@ -46,7 +48,9 @@ class MyApp extends StatelessWidget {
           case '/':
             return MaterialPageRoute(
               settings: settings,
-              builder: (context) => const DemoKeyScreen(),
+              builder: (context) => ChangeNotifierProvider(
+                  create: (context) => CounterProvider(),
+                  child: const ProviderDemo()),
             );
           case '/home':
             return MaterialPageRoute(

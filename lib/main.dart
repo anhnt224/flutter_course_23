@@ -3,6 +3,8 @@ import 'package:flutter_course_23/modules/lession_5/grid_view_demo.dart';
 import 'package:flutter_course_23/modules/lession_5/list_view_demo.dart';
 import 'package:flutter_course_23/modules/lession_6/sceens/home_screen.dart';
 import 'package:flutter_course_23/modules/lession_6/sceens/started_screen.dart';
+import 'package:flutter_course_23/modules/lession_7/checkout_screen.dart';
+import 'package:flutter_course_23/modules/lession_7/product_list_screen.dart';
 import 'package:flutter_course_23/modules/lession_7/provider_demo.dart';
 import 'package:flutter_course_23/modules/lession_7/tile_state_less.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +14,10 @@ import 'modules/lession_5/navigator_named.dart';
 import 'modules/lesson_4/image_demo.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    child: const MyApp(),
+    create: (context) => CartProvider(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -47,14 +52,10 @@ class MyApp extends StatelessWidget {
         switch (settings.name) {
           case '/':
             return MaterialPageRoute(
-              settings: settings,
-              builder: (context) => ChangeNotifierProvider(
-                  create: (context) => CounterProvider(),
-                  child: const ProviderDemo()),
-            );
-          case '/home':
+                settings: settings, builder: (context) => ProductListScreen());
+          case '/checkout':
             return MaterialPageRoute(
-              builder: (context) => const HomeScreen(),
+              builder: (context) => const CheckoutScreen(),
               settings: settings,
             );
 

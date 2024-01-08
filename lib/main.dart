@@ -3,7 +3,9 @@ import 'package:flutter_course_23/modules/lession_5/grid_view_demo.dart';
 import 'package:flutter_course_23/modules/lession_5/list_view_demo.dart';
 import 'package:flutter_course_23/modules/lession_6/sceens/home_screen.dart';
 import 'package:flutter_course_23/modules/lession_6/sceens/started_screen.dart';
+import 'package:flutter_course_23/modules/lession_7/checkout_2_screen.dart';
 import 'package:flutter_course_23/modules/lession_7/checkout_screen.dart';
+import 'package:flutter_course_23/modules/lession_7/product_list_2_screen.dart';
 import 'package:flutter_course_23/modules/lession_7/product_list_screen.dart';
 import 'package:flutter_course_23/modules/lession_7/provider_demo.dart';
 import 'package:flutter_course_23/modules/lession_7/tile_state_less.dart';
@@ -14,10 +16,7 @@ import 'modules/lession_5/navigator_named.dart';
 import 'modules/lesson_4/image_demo.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    child: const MyApp(),
-    create: (context) => CartProvider(),
-  ));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -52,10 +51,14 @@ class MyApp extends StatelessWidget {
         switch (settings.name) {
           case '/':
             return MaterialPageRoute(
-                settings: settings, builder: (context) => ProductListScreen());
+                settings: settings,
+                builder: (context) => const ProductList2Screen());
           case '/checkout':
+            final notifier = settings.arguments as CartNotifier;
             return MaterialPageRoute(
-              builder: (context) => const CheckoutScreen(),
+              builder: (context) => Checkout2Screen(
+                notifier: notifier,
+              ),
               settings: settings,
             );
 

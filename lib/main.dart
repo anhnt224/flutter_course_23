@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_course_23/modules/lession_8/auth_bloc_demo.dart/auth_bloc.dart';
 import 'package:flutter_course_23/modules/lession_8/auth_bloc_demo.dart/auth_cubit.dart';
 
 // Main
@@ -7,7 +8,7 @@ void main() {
   runApp(
     MaterialApp(
       home: BlocProvider(
-        create: (_) => AuthCubit(),
+        create: (_) => AuthBloc(),
         child: const LoginPage(),
       ),
     ),
@@ -25,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  late final _authCubit = context.read<AuthCubit>();
+  late final _authBloc = context.read<AuthBloc>();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         title: const Text('Đăng nhập'),
       ),
-      body: BlocListener<AuthCubit, AuthState>(
+      body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is LoginSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -64,7 +65,8 @@ class _LoginPageState extends State<LoginPage> {
                   TextButton(
                       onPressed: () {
                         Navigator.pop(context);
-                        _authCubit.login('admin', 'admin');
+                        _authBloc.add(
+                            LoginEvent(username: 'admin', password: 'admin'));
                       },
                       child: const Text('Đăng nhập lại'))
                 ],
@@ -95,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(
               height: 16,
             ),
-            BlocBuilder<AuthCubit, AuthState>(
+            BlocBuilder<AuthBloc, AuthState>(
               builder: (context, state) {
                 if (state is LoginIP) {
                   return const CircularProgressIndicator();
@@ -113,7 +115,8 @@ class _LoginPageState extends State<LoginPage> {
                   print(
                       '>> login ${_usernameController.text} - ${_passwordController.text}');
 
-                  _authCubit.login(username, password);
+                  _authBloc
+                      .add(LoginEvent(username: username, password: password));
                 },
                 child: const Text('Đăng nhập'))
           ]),

@@ -1,4 +1,4 @@
-part of 'auth_cubit.dart';
+part of 'auth_bloc.dart';
 
 // success | failure | loading | initial
 abstract class AuthState {

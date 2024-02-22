@@ -37,6 +37,7 @@ dependencies:
   textura: ^0.1.0+1
   collection: ^1.17.2
   provider: ^6.1.1
+  flutter_bloc: ^8.1.4
 
 dev_dependencies:
   flutter_test:

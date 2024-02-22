@@ -72,6 +72,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_course_23/modules/lession_8/bloc_demo/counter_bloc.dart';
 
 // Cubit
 class CounterCubit extends Cubit<int> {
@@ -89,7 +90,7 @@ void main() {
   runApp(
     MaterialApp(
       home: BlocProvider(
-        create: (_) => CounterCubit(50),
+        create: (_) => CounterBloc(CounterState(counter: 10)),
         child: const CounterPage(),
       ),
     ),
@@ -101,35 +102,56 @@ class CounterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cubit = BlocProvider.of<CounterCubit>(context);
+    final bloc = BlocProvider.of<CounterBloc>(context);
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Counter Cubit'),
       ),
       body: Center(
-        child: BlocBuilder<CounterCubit, int>(
-          builder: (context, state) {
-            return Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                FloatingActionButton(
-                  onPressed: cubit.decrement,
-                  child: const Icon(Icons.remove),
-                ),
-                const SizedBox(width: 16),
-                Text(
-                  '$state',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-                const SizedBox(width: 16),
-                FloatingActionButton(
-                  onPressed: cubit.increment,
-                  child: const Icon(Icons.add),
-                ),
-              ],
-            );
+        child: BlocListener<CounterBloc, CounterState>(
+          listener: (context, state) {
+            // show dialog || snackbar, ...
+            print(state.counter);
+            // ScaffoldMessenger.of(context).showSnackBar(
+            //   SnackBar(
+            //     content: Text('Counter: ${state.counter}'),
+            //   ),
+            // );
+
+            // showDialog(
+            //     context: context,
+            //     builder: (context) =>
+            //         AlertDialog(content: Text('Counter: ${state.counter}')));
           },
+          child: BlocBuilder<CounterBloc, CounterState>(
+            builder: (context, state) {
+              print('=== build');
+              return Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  FloatingActionButton(
+                    onPressed: () {
+                      bloc.add(DecrementEvent(value: 10));
+                    },
+                    child: const Icon(Icons.remove),
+                  ),
+                  const SizedBox(width: 16),
+                  Text(
+                    '${state.counter}',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                  const SizedBox(width: 16),
+                  FloatingActionButton(
+                    onPressed: () {
+                      bloc.add(IncrementEvent(value: 10));
+                    },
+                    child: const Icon(Icons.add),
+                  ),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
